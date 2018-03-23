@@ -28,3 +28,5 @@ Shape* RectangleFactory::create(Point point, double width, double height, std::s
     m_objects.push_back(rectangle);
     return rectangle;
 }
+
+int Shape::count = 0;

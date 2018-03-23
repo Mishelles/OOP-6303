@@ -11,6 +11,7 @@ Hexagon::Hexagon(Point point1, Point point2, Point point3, Point point4, Point p
 {
     m_color = color;
     std::cout << "Hexagon created" << std::endl;
+    id = ++count;
 }
 
 Hexagon::Hexagon(Point center, double distance, std::string color)
@@ -36,6 +37,7 @@ Hexagon::Hexagon(Point center, double distance, std::string color)
     m_point6.setY(m_point2.Y() + distance * 2);
 
     std::cout << "Hexagon created" << std::endl;
+    id = ++count;
 }
 
 void Hexagon::move(Point point)
@@ -84,6 +86,7 @@ void Hexagon::print(std::ostream &os)
     os << "My type is: Hexagon" << std::endl;
     os << "My color is: " << m_color << std::endl;
     os << "My center is: " << center << std::endl;
+    os << "My ID is: " << id << std::endl;
     os << "My coordinates are:" << std::endl;
     os << "\t" << m_point2 << "\t" << m_point3 << std::endl;
     os << m_point1 << "\t\t\t" << m_point4 << std::endl;
@@ -97,4 +100,16 @@ Point Hexagon::getCenter()
     double y = (m_point1.Y() + m_point4.Y()) / 2;
 
     return Point(x, y);
+}
+
+void Hexagon::affineTransformation(double affineMatrix[][2])
+{
+    Point center = this->getCenter();
+
+    m_point1.affineTransformation(affineMatrix, center);
+    m_point2.affineTransformation(affineMatrix, center);
+    m_point3.affineTransformation(affineMatrix, center);
+    m_point4.affineTransformation(affineMatrix, center);
+    m_point5.affineTransformation(affineMatrix, center);
+    m_point6.affineTransformation(affineMatrix, center);
 }

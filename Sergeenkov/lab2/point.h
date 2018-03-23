@@ -20,11 +20,15 @@ public:
     void rotate(double angle, Point center);
     void scale(double factor, Point center);
 
+    void affineTransformation(double affineMatrix[][2], Point center);
+
      friend std::ostream& operator<<(std::ostream& os, Point& point);
 
 private:
     double m_x;
     double m_y;
+
+    bool checkAffineMatrix(double matrix[][2]);
 };
 
 #endif // POINT_H

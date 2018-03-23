@@ -8,6 +8,7 @@ Parallelogram::Parallelogram(Point point1, Point point2, Point point3, Point poi
 {
     m_color = color;
     std::cout << "Parallelogram created" << std::endl;
+    id = ++count;
 }
 
 void Parallelogram::move(Point point)
@@ -51,6 +52,7 @@ void Parallelogram::print(std::ostream &os)
     os << "My coordinates are:" << std::endl;
     os << m_point1 << "\t" << m_point2 << std::endl;
     os << m_point3 << "\t" << m_point4 << std::endl;
+    os << "My ID is: " << id << std::endl;
     os << "My center is: " << center << std::endl;
     os << "My color is: " << m_color << std::endl;
     os << "-------------------------------------------" << std::endl;
@@ -63,4 +65,14 @@ Point Parallelogram::getCenter()
     double y = (m_point1.Y() + m_point3.Y()) / 2;
 
     return Point(x, y);
+}
+
+void Parallelogram::affineTransformation(double affineMatrix[][2])
+{
+    Point center = this->getCenter();
+
+    m_point1.affineTransformation(affineMatrix, center);
+    m_point2.affineTransformation(affineMatrix, center);
+    m_point3.affineTransformation(affineMatrix, center);
+    m_point4.affineTransformation(affineMatrix, center);
 }

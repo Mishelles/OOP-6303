@@ -20,6 +20,8 @@ public:
     void print(std::ostream& os);
     Point getCenter();
 
+    void affineTransformation(double affineMatrix[][2]);
+
     virtual ~Hexagon() { std::cout << "Hexagon destroyed" << std::endl; };
 
 protected:

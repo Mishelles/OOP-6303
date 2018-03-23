@@ -15,6 +15,10 @@ public:
     virtual void print(std::ostream& os);
     virtual Point getCenter() = 0;
 
+    virtual void affineTransformation(double affineMatrix[2][2]) = 0;
+
+    static int count;
+
     friend std::ostream& operator<<(std::ostream& os, Shape& shape);
 
     void setColor(std::string color);
@@ -25,6 +29,7 @@ public:
 
 protected:
     std::string m_color;
+    int id;
 };
 
 #endif // SHAPE_H

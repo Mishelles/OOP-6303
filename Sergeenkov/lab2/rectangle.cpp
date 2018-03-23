@@ -11,6 +11,7 @@ Rectangle::Rectangle(Point point1, Point point2, Point point3, Point point4, std
 {
     m_color = color;
     std::cout << "Rectangle created" << std::endl;
+    id = ++count;
 }
 
 Rectangle::Rectangle(Point point, double width, double height, std::string color)
@@ -28,6 +29,7 @@ Rectangle::Rectangle(Point point, double width, double height, std::string color
     m_point4.setY(m_point1.Y() + height);
 
     std::cout << "Rectangle created" << std::endl;
+    id = ++count;
 }
 
 Point Rectangle::getCenter()
@@ -81,7 +83,18 @@ void Rectangle::print(std::ostream& os)
     os << m_point1 << "\t" << m_point2 << std::endl;
     os << m_point3 << "\t" << m_point4 << std::endl;
     os << "My center is: " << center << std::endl;
+    os << "My ID is: " << id << std::endl;
     os << "My color is: " << m_color << std::endl;
     os << "-------------------------------------------" << std::endl;
 
+}
+
+void Rectangle::affineTransformation(double affineMatrix[][2])
+{
+    Point center = this->getCenter();
+
+    m_point1.affineTransformation(affineMatrix, center);
+    m_point2.affineTransformation(affineMatrix, center);
+    m_point3.affineTransformation(affineMatrix, center);
+    m_point4.affineTransformation(affineMatrix, center);
 }

@@ -19,6 +19,11 @@ int main()
     Shape* hex = hex_factory.create(Point(0, 0), 10, "red");
     Shape* par = par_factory.create(Point(100, 100), Point(200, 100), Point(150, 50), Point(50, 50), "blue");
 
+    // Матрица для афинного преобразования
+    double affine_matrix[2][2] = {
+        { 1 , 0 },
+        { 0 , 1 }};
+
     // Test Ractangle
 
     std::cout << "***Test Rectangle***" << std::endl;
@@ -39,6 +44,10 @@ int main()
 
     std::cout << "Rotating..." << std::endl;
     rec->rotate(6.28);
+    std::cout << *rec << std::endl;
+
+    std::cout << "Affine transforming..." << std::endl;
+    rec->affineTransformation(affine_matrix);
     std::cout << *rec << std::endl;
 
     // Test Parallelogram
@@ -63,6 +72,10 @@ int main()
     par->rotate(6.28);
     std::cout << *par << std::endl;
 
+    std::cout << "Affine transforming..." << std::endl;
+    par->affineTransformation(affine_matrix);
+    std::cout << *par << std::endl;
+
     // Test Hexagon
 
     std::cout << "***Test Hexagon***" << std::endl;
@@ -85,7 +98,9 @@ int main()
     hex->rotate(6.28);
     std::cout << *hex << std::endl;
 
-    ShapeFactory factory;
+    std::cout << "Affine transforming..." << std::endl;
+    hex->affineTransformation(affine_matrix);
+    std::cout << *hex << std::endl;
 
     return 0;
 }

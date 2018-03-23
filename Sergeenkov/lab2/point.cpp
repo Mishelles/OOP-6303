@@ -52,3 +52,21 @@ std::ostream& operator<<(std::ostream& os, Point& point)
     os << "(" << point.X() << " ; " << point.Y() << ")";
     return os;
 }
+
+void Point::affineTransformation(double affineMatrix[][2], Point center)
+{
+    if(this->checkAffineMatrix(affineMatrix)) {
+        m_x = m_x * affineMatrix[0][0] + m_y * affineMatrix[0][1] + center.X();
+        m_y = m_x * affineMatrix[1][0] + m_y * affineMatrix[1][1] + center.Y();
+    } else {
+        std::cout << "Invalid Affine Matrix: Determinant == 0" << std::endl;
+    }
+
+}
+
+bool Point::checkAffineMatrix(double matrix[][2])
+{
+    double det = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+
+    return (det != 0);
+}

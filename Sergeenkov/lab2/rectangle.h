@@ -19,6 +19,8 @@ public:
     void print(std::ostream& os);
     Point getCenter();
 
+    void affineTransformation(double affineMatrix[][2]);
+
     virtual ~Rectangle() { std::cout << "Rectangle destroyed" << std::endl; };
 
 protected:

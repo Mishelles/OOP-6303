@@ -18,6 +18,8 @@ public:
     void print(std::ostream& os);
     Point getCenter();
 
+    void affineTransformation(double affineMatrix[][2]);
+
     virtual ~Parallelogram() { std::cout << "Parallelogram destroyed" << std::endl; };
 
 protected:

@@ -1,5 +1,6 @@
 #include "shape.h"
 #include <typeinfo>
+#include <ctime>
 
 std::string Shape::getColor()
 {
